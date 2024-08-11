@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo } from "react";
 import io from "socket.io-client";
+import { Server } from "./Constants/Config";
 
 // To access this socket in other files we will use context
 // we donot want that our socket is created everytime so we will use Usememo hook
@@ -16,7 +17,7 @@ const getSocket = () => useContext(SocketContext);
 
 
 const SocketProvider = ({ children }) => { const socket = 
-  useMemo(() => io("http://localhost:8000", {
+  useMemo(() => io(`${Server}`, {
         withCredentials: true}),
     []
   );

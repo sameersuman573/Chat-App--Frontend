@@ -24,13 +24,14 @@ import { CurveButton, SearchField } from "../Components/BasicStyle.Components";
 import { DoughtnutChart, LineChart } from "../Components/Specific/Charts";
 import { LoaderIcon } from "react-hot-toast";
 import {useErrors} from "../hooks/hook"
+import { Server } from "../Constants/Config";
 
 
  const Dashboard = () => {
 
 
   const {loading , data:stats , error} = useFetchData(
-    "http://localhost:8000/api/v1/Admin/GetStats" , "dashboard-stats"
+    `${Server}/api/v1/Admin/GetStats` , "dashboard-stats"
   );
 
 

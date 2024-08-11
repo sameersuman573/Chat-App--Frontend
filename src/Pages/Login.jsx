@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { userExists } from "../Redux/Reducer/auth";
 import { useNavigate } from "react-router-dom";
+import { Server } from "../Constants/Config";
 
 const theme = createTheme({
   palette: {
@@ -59,7 +60,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/users/login",
+        `${Server}/api/v1/users/login`,
         { email, password },
         config
       );
@@ -103,7 +104,7 @@ const Login = () => {
       };response.data.data
   
       const response = await axios.post(
-        "http://localhost:8000/api/v1/users/register",
+        `${Server}/api/v1/users/register`,
         formData,
         config
       );

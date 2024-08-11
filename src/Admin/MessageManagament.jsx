@@ -9,6 +9,7 @@ import RenderAttachment from "../Components/Shared/RenderAttachment";
 import { useFetchData } from "6pp";
 import { useErrors } from "../hooks/hook";
 import { LoaderIcon } from "react-hot-toast";
+import { Server } from "../Constants/Config";
 
 const columns = [
   {
@@ -91,7 +92,7 @@ const MessageManagament = () => {
     data: stats,
     error,
   } = useFetchData(
-    "http://localhost:8000/api/v1/Admin/GetallMessages",
+    `${Server}/api/v1/Admin/GetallMessages`,
     "dashboard-messages"
   );
 

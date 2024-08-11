@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import { Server } from "../../Constants/Config";
 // Provided Tags - IT IS USED IN QUERIES  -It is a query . It specifies the tag that this query provide This SPECIFIC data . Thus when we apply INVALIDATE TAGS on a mutation then it will refetch the data of the query which provides this tag on the given mutation
 
 // invalidatesTags: IT IS USED IN MUTATION - Specifies the tags that this mutation invalidates. After the mutation is performed, the associated tags are invalidated, triggering re-fetches for any queries that use those tags.
@@ -12,7 +12,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const api = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/v1/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${Server}/api/v1/` }),
   tagTypes: ["Chat", "User", "Messages"],
   //   Done for caching the data
 

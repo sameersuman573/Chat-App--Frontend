@@ -8,6 +8,7 @@ import AvatarCard from "../Components/Shared/AvatarCard";
 import { useFetchData } from "6pp";
 import { useErrors } from "../hooks/hook";
 import { LoaderIcon } from "react-hot-toast";
+import { Server } from "../Constants/Config";
 
 const columns = [
   {
@@ -66,7 +67,7 @@ const ChatManagment = () => {
     data: stats,
     error,
   } = useFetchData(
-    "http://localhost:8000/api/v1/Admin/GetallChats",
+    `${Server}/api/v1/Admin/GetallChats`,
     "dashboard-chats"
   );
 

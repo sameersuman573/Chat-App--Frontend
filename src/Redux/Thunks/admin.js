@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Server } from "../../Constants/Config";
 
 // prefix String = admin/login
 const adminLogin = createAsyncThunk("admin/login", async (secretKey) => {
@@ -12,7 +13,7 @@ const adminLogin = createAsyncThunk("admin/login", async (secretKey) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:8000/api/v1/Admin/LoginAdmin",
+      `${Server}/api/v1/Admin/LoginAdmin`,
       { secretKey },
       config
     );
@@ -26,7 +27,7 @@ const adminLogin = createAsyncThunk("admin/login", async (secretKey) => {
 const getAdmin = createAsyncThunk("admin/getAdmin", async () => {
   try {
     const { data } = await axios.get(
-      "http://localhost:8000/api/v1/Admin/GetAdmin",
+      `${Server}/api/v1/Admin/GetAdmin`,
       {
         withCredentials: true,
       }
@@ -41,7 +42,7 @@ const getAdmin = createAsyncThunk("admin/getAdmin", async () => {
 const AdminLogout = createAsyncThunk("admin/Logout", async () => {
   try {
     const { data } = await axios.post(
-      "http://localhost:8000/api/v1/Admin/LogoutAdmin",
+      `${Server}/api/v1/Admin/LogoutAdmin`,
       {
         withCredentials:true
       }

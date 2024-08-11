@@ -7,6 +7,7 @@ import { transformImage } from "../lib/features";
 import { useFetchData } from "6pp";
 import { useErrors } from "../hooks/hook";
 import { LoaderIcon } from "react-hot-toast";
+import { Server } from "../Constants/Config";
 
 const columns = [
   {
@@ -58,7 +59,7 @@ const UserManagement = () => {
     data: stats,
     error,
   } = useFetchData(
-    "http://localhost:8000/api/v1/Admin/GetallUsers",
+    `${Server}/api/v1/Admin/GetallUsers`,
     "dashboard-users"
   );
 

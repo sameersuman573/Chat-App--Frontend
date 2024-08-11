@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { userExists, userNotExists } from "./Redux/Reducer/auth";
 import { SocketProvider } from "./Socket";
+import { Server } from "./Constants/Config";
 
 // Admin
 const AdminLogin = lazy(() => import("./Admin/AdminLogin"));
@@ -40,7 +41,7 @@ const App = () => {
       };
 
       const response = await axios.get(
-        `http://localhost:8000/api/v1/users/Currentuser`,
+        `${Server}/api/v1/users/Currentuser`,
         config
       );
 

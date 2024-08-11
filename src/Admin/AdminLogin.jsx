@@ -20,7 +20,7 @@ const theme = createTheme({
     primary: {
       main: "#021526",
     },
-  },
+  }, 
 });
 
 const AdminLogin = () => {
