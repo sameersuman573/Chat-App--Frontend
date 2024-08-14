@@ -101,8 +101,9 @@ const Login = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      };response.data.data
-  
+      };
+      
+   
       const response = await axios.post(
         `${Server}/api/v1/users/register`,
         formData,
