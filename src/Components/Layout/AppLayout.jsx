@@ -47,11 +47,6 @@ const AppLayout = () => (WrappedComponents) => {
       //  Here we are saving the data in the local storage
     }, [newMessagesAlert]);
 
-
-
-   
-
-
     // AGGREGATIONG THE USEFUL DATA
     // if (data?.data && Array.isArray(data.data)) {
     //   // Log the name property from each item in the array
@@ -62,8 +57,6 @@ const AppLayout = () => (WrappedComponents) => {
     //   console.log("No data available");
     // }
 
-
-
     // Use Ref is Apllied to Directly Manipulate it
     const handleDeleteChat = (e, chatId, groupchat) => {
       dispatch(setIsDeleteMenu(true));
@@ -71,15 +64,11 @@ const AppLayout = () => (WrappedComponents) => {
       deleteMenuAnchor.current = e.currentTarget;
     };
 
-
-
     const handleMobile = () => dispatch(setIsMobile(false));
 
+    // FETCHING THE CHATS DETAILS
 
-
-     // FETCHING THE CHATS DETAILS
-
-     const newMessageAlertHandler = useCallback(
+    const newMessageAlertHandler = useCallback(
       (data) => {
         if (data.chatId === chatId) return;
         // If you are on the same chat then it will return else it will show the alert that you have new messages from different chats
@@ -88,7 +77,7 @@ const AppLayout = () => (WrappedComponents) => {
         // It contains The ChatId as well as message Information
         console.log("New Message Alert karo", MessagePing);
 
-        dispatch(setNewMessagesAlert(data)); 
+        dispatch(setNewMessagesAlert(data));
       },
       [chatId]
     );
@@ -102,18 +91,14 @@ const AppLayout = () => (WrappedComponents) => {
     const RefetchListner = useCallback(() => {
       console.log("Refetching the chat list");
       refetch();
-     }, [refetch]);
-
-
+    }, [refetch]);
 
     const eventHandler = {
       [NEW_MESSAGE_ALERT]: newMessageAlertHandler,
       [REFETCH_CHATS]: RefetchListner,
     };
 
-
     useSocketEvents(socket, eventHandler);
-
 
     return (
       <>
@@ -184,6 +169,10 @@ const AppLayout = () => (WrappedComponents) => {
             }}
           >
             <Profile user={user} />
+
+            <script src="https://cdn.botpress.cloud/webchat/v2/inject.js"></script>
+            <script src="https://mediafiles.botpress.cloud/9efe11fe-b685-4ea0-a47b-00a6a8260e59/webchat/v2/config.js"></script>
+            
           </Grid>
         </Grid>
         <div>Footer</div>
