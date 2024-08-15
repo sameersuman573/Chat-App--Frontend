@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import Header from "./Header";
 import Title from "../Shared/Title";
-import { Grid } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import ChatList from "../Specific/ChatList";
 import { useNavigate, useParams } from "react-router-dom";
 import Profile from "../Specific/Profile";
@@ -168,11 +168,18 @@ const AppLayout = () => (WrappedComponents) => {
               bgcolor: "#394867",
             }}
           >
+            <Stack>
+              <script src="https://cdn.botpress.cloud/webchat/v2/inject.js">
+                {" "}
+                My Bot{" "}
+              </script>
+              <script src="https://mediafiles.botpress.cloud/9efe11fe-b685-4ea0-a47b-00a6a8260e59/webchat/v2/config.js">
+                {" "}
+                Electron Bot{" "}
+              </script>
+            </Stack>
+
             <Profile user={user} />
-
-            <script src="https://cdn.botpress.cloud/webchat/v2/inject.js"> My Bot </script>
-            <script src="https://mediafiles.botpress.cloud/9efe11fe-b685-4ea0-a47b-00a6a8260e59/webchat/v2/config.js"> Electron Bot </script>
-
           </Grid>
         </Grid>
         <div>Footer</div>
