@@ -170,9 +170,9 @@ const AppLayout = () => (WrappedComponents) => {
           >
             <Profile user={user} />
 
-            <script src="https://cdn.botpress.cloud/webchat/v2/inject.js"></script>
-            <script src="https://mediafiles.botpress.cloud/9efe11fe-b685-4ea0-a47b-00a6a8260e59/webchat/v2/config.js"></script>
-            
+            <script src="https://cdn.botpress.cloud/webchat/v2/inject.js"> My Bot </script>
+            <script src="https://mediafiles.botpress.cloud/9efe11fe-b685-4ea0-a47b-00a6a8260e59/webchat/v2/config.js"> Electron Bot </script>
+
           </Grid>
         </Grid>
         <div>Footer</div>
