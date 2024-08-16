@@ -115,7 +115,7 @@ const App = () => {
             element={<TransactionHistory />}
           />
 
-          <Route path="*" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <Toaster position="bottom-top" />
