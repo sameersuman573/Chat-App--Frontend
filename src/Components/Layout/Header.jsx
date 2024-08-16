@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import {
   Add,
+  AttachMoneyRounded,
   Menu as MenuIcon,
   Search as SearchIcon,
 } from "@mui/icons-material";
@@ -24,6 +25,8 @@ import {
   setIsSearch,
 } from "../../Redux/Reducer/misc";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { Server } from "../../Constants/Config";
 
 // LAZY IMPORTS FOR DIALOGS
 const Search = lazy(() => import("../Specific/Search"));
@@ -34,7 +37,7 @@ const NewGroup = lazy(() => import("../Specific/NewGroup"));
 
 const Header = () => {
  
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { isSearch, isNotification , isNewGroup  } = useSelector((state) => state.misc);
@@ -49,20 +52,55 @@ const Header = () => {
   const openNewgroup = () =>dispatch(setIsNewGroup(true));
 
   // NAVIGATE
-  const NavigateToGroup = () => Navigate("/Groups");
+  const NavigateToGroup = () => navigate("/Groups");
+  const NavigateToTransaction = () => navigate("/Dashboard");
 
-  // LOGOUT HANDLER
-  const logoutHandle = () => {
-    console.log("Logout");
-  };
+ 
+const config = {
+  withCredentials: true,
+};
 
+// LOGOUT HANDLER
+const logoutHandle = async () => {
+  try {
+    const token = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('accessToken'))
+      .split('=')[1];
+
+    if (!token) {
+      console.error('No access token found in cookies');
+      return;
+    }
+
+    const res = await axios.post('http://localhost:8000/api/v1/users/logout', {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true, // Include this to send cookies with the request
+    });
+
+    // Invalidate the cookies
+    document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    dispatch(userNotExists());
+    navigate('/login');
+    toast.success(res.data.message);
+  } catch (error) {
+    toast.error(error?.response?.data?.message || "Something went wrong while logging out");
+  }
+};
   return (
     <>
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
         <AppBar
           position="static"
           sx={{
-            bgcolor: "#030637",
+            bgcolor: "#000000",
+            // background: "linear-gradient(45deg, #0f0c29, #302b63, #24243e)",
+            // background: "linear-gradient(45deg, #141E30, #243B55 )",
+
           }}
         >
           <Toolbar>
@@ -100,8 +138,8 @@ const Header = () => {
               <GroupAddIcon />
             </IconButton>
 
-            <IconButton color="inherit" onClick={openNotification}>
-              <NotificationAddIcon />
+            <IconButton color="inherit" onClick={NavigateToTransaction}>
+              <AttachMoneyRounded />
             </IconButton>
 
             <IconButton color="inherit" onClick={logoutHandle}>
@@ -123,11 +161,11 @@ const Header = () => {
         </Suspense>
       )}
 
-      {isNotification && (
+      {/* {isNotification && (
         <Suspense fallback={<Backdrop open />}>
           <Notification />
         </Suspense>
-      )}
+      )} */}
     </>
   );
 };
