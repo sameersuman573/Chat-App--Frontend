@@ -13,7 +13,7 @@ function NotFound() {
             href="../figma.html"
           >
             <p class="me-2 text-white text-sm">Lets Share Emotions Together.</p>
-            <span class="group-hover:bg-white/10 py-1.5 px-2.5 flex justify-center items-center gap-x-2 rounded-full bg-white/10 font-semibold text-white text-sm">
+            {/* <span class="group-hover:bg-white/10 py-1.5 px-2.5 flex justify-center items-center gap-x-2 rounded-full bg-white/10 font-semibold text-white text-sm">
               <svg
                 class="shrink-0 size-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ function NotFound() {
               >
                 <path d="m9 18 6-6-6-6" />
               </svg>
-            </span>
+            </span> */}
           </a>
         </div>
 
