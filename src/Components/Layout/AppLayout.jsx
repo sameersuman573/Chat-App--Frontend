@@ -165,7 +165,9 @@ const AppLayout = () => (WrappedComponents) => {
             sx={{
               display: { xs: "none", md: "block" },
               padding: "2rem",
-              bgcolor: "#394867",
+              bgcolor: "transparent",
+              background: "linear-gradient(45deg, #0f0c29, #004e92)",
+
             }}
           >
             <Profile user={user} />

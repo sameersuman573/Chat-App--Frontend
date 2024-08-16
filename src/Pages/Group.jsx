@@ -27,8 +27,7 @@ import {
   useRenameGroupMutation,
   useRemoveGroupMemberMutation,
   useAddGroupMemberMutation,
-    useDeleteChatMutation,
-
+  useDeleteChatMutation,
 } from "../Redux/api/api";
 import { useAsycMutation, useErrors } from "../hooks/hook";
 import Loader from "../Components/Layout/Loaders";
@@ -37,7 +36,6 @@ import { setIsAddMember } from "../Redux/Reducer/misc";
 const ConfirmDeleteDialog = lazy(() =>
   import("../dialogs/ConfirmDeleteDialog")
 );
-
 
 const Group = () => {
   const chatId = useSearchParams()[0].get("group");
@@ -65,11 +63,9 @@ const Group = () => {
     useAddGroupMemberMutation
   );
 
-  
   const [deleteChat, isLoadingdeleteChat] = useAsycMutation(
     useDeleteChatMutation
   );
-
 
   console.log("Group Details", groupDetails.data?.data);
 
@@ -100,21 +96,24 @@ const Group = () => {
     })
   ];
 
-  useEffect(() => {
-    if (groupDetails.data?.data) {
-      setgroupname(groupDetails.data?.data?.name);
-      setgroupNameUpdatedValue(groupDetails.data?.data?.name);
-    }
+  useEffect(
+    () => {
+      if (groupDetails.data?.data) {
+        setgroupname(groupDetails.data?.data?.name);
+        setgroupNameUpdatedValue(groupDetails.data?.data?.name);
+      }
 
-    return () => {
-      setgroupname("");
-      setgroupNameUpdatedValue("");
-      setisEdit(false);
-      // while i was changing name if i change the group then it will not show the previous name and will not update it
-    };
-  }, [
-    // groupDetails.data?.data
-  ]);
+      return () => {
+        setgroupname("");
+        setgroupNameUpdatedValue("");
+        setisEdit(false);
+        // while i was changing name if i change the group then it will not show the previous name and will not update it
+      };
+    },
+    [
+      // groupDetails.data?.data
+    ]
+  );
 
   const handleMobile = () => {
     setisMobileOpen((prev) => !prev);
@@ -153,9 +152,9 @@ const Group = () => {
 
   const deleteHanlder = () => {
     deleteChat("Group Delted ", chatId);
-       console.log("Delete Group");
-      navigate("/home");
-      closeConfirmDelteHandler();
+    console.log("Delete Group");
+    navigate("/home");
+    closeConfirmDelteHandler();
   };
 
   // Just Contains Icons
@@ -326,22 +325,24 @@ const Group = () => {
               bgcolor={"#F3F8FF"}
               height={"70vh"}
             >
-              {  isLoadingRemoveMember ? <Loader/> 
-              :
+              {isLoadingRemoveMember ? (
+                <Loader />
+              ) : (
                 groupDetails.data?.data?.members.map((i) => (
-                <UserItem
-                  user={i}
-                  key={i._id}
-                  isAdded
-                  styling={{
-                    boxShadow: "0 0 0.5rem  rgba(0,0,0,0.2)",
-                    padding: "1rem 2rem",
-                    borderRadius: "5rem",
-                  }}
-                  handler={removeMemberHandler}
-                  // from here member Id and chatId Is passed to removeMemberHandler
-                />
-              ))}
+                  <UserItem
+                    user={i}
+                    key={i._id}
+                    isAdded
+                    styling={{
+                      boxShadow: "0 0 0.5rem  rgba(0,0,0,0.2)",
+                      padding: "1rem 2rem",
+                      borderRadius: "5rem",
+                    }}
+                    handler={removeMemberHandler}
+                    // from here member Id and chatId Is passed to removeMemberHandler
+                  />
+                ))
+              )}
             </Stack>
 
             {ButtonGroup}
@@ -393,9 +394,9 @@ const GroupList = ({ w = "100%", myGroups = [], chatId }) => (
         <GroupListItem group={group} chatId={chatId} key={group._id} />
       ))
     ) : (
-      <Typography textAlign={"center"} padding="1rem">
-        No groups
-      </Typography>
+      <div className="text-6xl flex items-center justify-center h-screen">
+        {myGroups.length === 0 && <div> 🅷🅰🆅🅸🅽🅶 🅰 🅶🆁🅾🆄🅿🅲🅷🅰🆃 🅼🅰🆃🆃🅴🆁🆂 .....</div>}
+      </div>
     )}
   </Stack>
 );

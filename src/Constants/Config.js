@@ -2,7 +2,7 @@
 
 
 export const Server = import.meta.env.VITE_SERVERS;
-
+console.log("this is my server" ,Server);  // Add this line
 
 
 // PROBLEMS

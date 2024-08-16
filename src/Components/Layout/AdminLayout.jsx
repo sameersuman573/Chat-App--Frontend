@@ -19,9 +19,9 @@ import {
 import React, { useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "../BasicStyle.Components";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { AdminLogout } from "../../Redux/Thunks/admin";
-
+ 
 const AdminTabs = [
   {
     name: "dashboard",
@@ -56,9 +56,10 @@ const Sidebar = ({ w = "100%" }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   const logoutHandler = () => {
-    navigate("/admin");
     dispatch(AdminLogout());
+    navigate("/login");
   };
 
   return (
@@ -100,8 +101,9 @@ const Sidebar = ({ w = "100%" }) => {
   );
 };
 
-const isAdmin = true;
-const AdminLayout = ({ children }) => {
+ const AdminLayout = ({ children }) => {
+  const { isAdmin } = useSelector((state) => state.auth);
+
   const [isMobile, setisMobile] = useState(false);
 
   const handlemobile = () => setisMobile(!isMobile);

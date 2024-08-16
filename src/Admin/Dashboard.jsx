@@ -45,43 +45,17 @@ import { Server } from "../Constants/Config";
 
   // Appbar
   const Appbar = () => (
+    
     <Paper
       elevation={19}
       sx={{
         padding: "1rem",
         margin: "2rem 0",
         borderRadius: "5rem",
+        backgroundColor: "#f5f5f5",
       }}
     >
-      <Stack direction={"row"} margin={"2rem 0"} borderRadius={"1rem"}>
-        <AdminPanelSettings
-          sx={{
-            fontSize: "3rem",
-            color: "blue",
-          }}
-        />
-        <SearchField placeholder="Search" />
-
-        <CurveButton>Search</CurveButton>
-
-        {/* It Creates a gap unless all are distributed and comoforatble with the given space */}
-        <Box flexGrow={1} />
-
-        <Typography
-          display={{
-            xs: "none",
-            md: "block",
-          }}
-          color={"#134B70"}
-          textAlign={"center"}
-        >
-          {moment().format("MMMM Do YYYY, h:mm:ss a")}
-        </Typography>
-
-        <IconButton>
-          <NotificationAddRounded />
-        </IconButton>
-      </Stack>
+    
     </Paper>
   );
 

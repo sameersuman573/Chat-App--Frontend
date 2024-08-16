@@ -15,8 +15,8 @@ const UserItem = ({
   styling = {},
 }) => {
   const { username, _id, avatar, email } = user;
-  console.log("User Item checking", user.fullname);
 
+ 
   return ( 
     <ListItem
       sx={{
@@ -44,7 +44,7 @@ const UserItem = ({
             color: "#3BACB6",
           }}
         >
-          {user.fullname}{" "}
+          {user.username}{" "}
         </Typography>
 
         <IconButton

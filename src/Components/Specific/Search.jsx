@@ -125,7 +125,7 @@ const SubmitHandler = () => {
           <List>
             {users.map((p) => (
               <UserItem
-                user={p}Button
+                user={p}
                 key={p._id}
                 handler={selectMemberHanlder}
                 // handlerIsLoading={IsloadingSendFriendRequest}

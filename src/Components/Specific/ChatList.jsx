@@ -30,16 +30,21 @@ const ChatList = ({
     <Stack
       width={w}
       direction={"column"}
-      bgcolor="#EDEEF7"
-      sx={{
+       sx={{
         overflow: "auto",
         height: "100%",
+        bgcolor: "#F0F3FF",
+        // background: "linear-gradient(45deg, #000428, #004e92)",
       }}
     >
-      {chats.length === 0 && <div>No chats available</div>}
+      {chats.length === 0 && 
+      <div className="text-6xl flex items-center justify-center h-screen">
+    {chats.length === 0 && <div>🆆🅰🅽🅽🅰 🅿🅸🅽🅶 🆂🅾🅼🅴🅾🅽🅴 .....</div>}
+</div>
+}
 
       {chats?.map((data , index) => {
-        const { name, _id, groupChat, members } = data;
+        const { name, _id, groupChat, members , message } = data;
 
         const Messagealert = alerts.find(
           ({ chatId }) => chatId === _id
@@ -48,7 +53,9 @@ const ChatList = ({
           onlineUsers.includes(member)
         );
 
-        {/* console.log("chatID check kar", chatId); */}
+        {/* console.log(" check kar", data?.message?.sender?.avatar); */}
+        const senderAvatar = message?.sender?.avatar;
+
         {/* console.log("_id check hai ", _id); */}
 
         return (
@@ -56,7 +63,7 @@ const ChatList = ({
             index={index}
             Messagealert={Messagealert}
             isonline={isonline}
-            avatar={avatar}
+            avatar={senderAvatar}
             name={name}
             _id={_id}
             key={_id}

@@ -239,7 +239,7 @@ const Login = () => {
                   Login
                 </Button>
                 <Typography textAlign="center" m="1rem">
-                  Or
+                  
                 </Typography>
                 <Button
                   sx={{ marginTop: "1rem" }}

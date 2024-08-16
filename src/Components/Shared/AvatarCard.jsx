@@ -3,6 +3,8 @@ import React from "react";
 import { transformImage } from "../../lib/features";
 
 const AvatarCard = ({ avatar = [], max = 4 }) => {
+  const avatars = Array.isArray(avatar) ? avatar : [];
+
   return (
     <Stack direction={"row"} spacing={0.5}>
       <AvatarGroup max={max}
@@ -10,7 +12,7 @@ const AvatarCard = ({ avatar = [], max = 4 }) => {
         position: "relative",
       }}>
         <Box width={"5rem"} height={"3rem"}>
-          {avatar.map((src, index) => (
+          {avatars.map((src, index) => (
             <Avatar
               key={Math.random() * 100}
               src={transformImage(src)}

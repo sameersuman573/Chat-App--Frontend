@@ -1,9 +1,11 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography ,Avatar } from "@mui/material";
 import React, { memo } from "react"; // Ensure memo is imported from React
 import { Link } from "../BasicStyle.Components";
 import Divider from "@mui/material/Divider";
 import AvatarCard from "./AvatarCard";
 import {motion} from "framer-motion";
+import { transformImage } from "../../lib/features";
+
 const ChatItem = ({
   // avatar = [],
   name,
@@ -11,11 +13,13 @@ const ChatItem = ({
   groupchat = false,
   samesender,
   isonline,
+  avatar,
   newMessage,
   Messagealert,
   index = 0,
   handleDeleteChat,
 }) => {
+  console.log("check avatar", avatar);
   return (
     <Link
       sx={{
@@ -34,13 +38,16 @@ const ChatItem = ({
           gap: "1rem",
           padding: "1.5rem",
           alignItems: "center",
-          backgroundColor: samesender ? "#071952" : "#232D3F",
+          background: samesender ? "linear-gradient(45deg, #159957, #155799  )" : "linear-gradient(45deg, #232D3F, #071952)",
           // #EEF5FF
           color: samesender ? "#1D24CA" : "#FF9BD2",
           position: "relative",
         }}
       >
-        <AvatarCard  />
+        {/* <AvatarCard avatar={avatar} /> */}
+        <Avatar src={transformImage(avatar)} />
+
+
 
         <Stack>
           <Typography color="#EEEEEE">{name}</Typography>
@@ -51,6 +58,7 @@ const ChatItem = ({
             </Typography>
           )}
         </Stack>
+
  
         {isonline && (
           <Box
