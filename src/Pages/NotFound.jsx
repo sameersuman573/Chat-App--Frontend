@@ -8,12 +8,12 @@ function NotFound() {
     <div class="bg-gradient-to-b from-violet-600/10 via-transparent">
       <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-8">
         <div class="flex justify-center">
-          <a
+          {/* <a
             class="group inline-flex items-center bg-white/10 hover:bg-white/10 border border-white/10 p-1 ps-4 rounded-full shadow-md focus:outline-none focus:bg-white/10"
             href="../figma.html"
           >
             <p class="me-2 text-white text-sm">Lets Share Emotions Together.</p>
-            {/* <span class="group-hover:bg-white/10 py-1.5 px-2.5 flex justify-center items-center gap-x-2 rounded-full bg-white/10 font-semibold text-white text-sm">
+            <span class="group-hover:bg-white/10 py-1.5 px-2.5 flex justify-center items-center gap-x-2 rounded-full bg-white/10 font-semibold text-white text-sm">
               <svg
                 class="shrink-0 size-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,8 +28,8 @@ function NotFound() {
               >
                 <path d="m9 18 6-6-6-6" />
               </svg>
-            </span> */}
-          </a>
+            </span>
+          </a> */}
         </div>
 
         <div class="max-w-3xl text-center mx-auto">
