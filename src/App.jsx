@@ -14,6 +14,13 @@ import { userExists, userNotExists } from "./Redux/Reducer/auth";
 import { SocketProvider } from "./Socket";
 import { Server } from "./Constants/Config";
 
+
+// Transaction
+import { SendMoney } from "./Pages/SendMoney";
+import {TransactionHistory} from "./Pages/TranscationHistory"
+import { DashBoard } from "./Pages/DashBoard";
+
+
 // Admin
 const AdminLogin = lazy(() => import("./Admin/AdminLogin"));
 const Dashboard = lazy(() => import("./Admin/Dashboard"));
@@ -100,7 +107,15 @@ const App = () => {
           <Route path="/admin/message" element={<MessageManagament />} />
           <Route path="/admin/chat" element={<ChatManagment />} />
 
-          <Route path="*" element={<NotFound />} />
+
+          <Route path="/Dashboard" element={<DashBoard />} />   // works 
+          <Route path="/send" element={<SendMoney />} />
+          <Route
+            path="/history/:Fromusername"
+            element={<TransactionHistory />}
+          />
+
+          <Route path="*" element={<Login />} />
         </Routes>
       </Suspense>
       <Toaster position="bottom-top" />
@@ -109,3 +124,4 @@ const App = () => {
 };
 
 export default App;
+ 

@@ -5,6 +5,7 @@ import { CssBaseline } from "@mui/material";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import store from "./Redux/Store.js"
+import './index.css'
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
