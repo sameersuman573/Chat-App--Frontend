@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "../Layout/Loaders";
+import { Server } from "../../Constants/Config";
 
 export const Balance = () => {
   const [balance, setBalance] = useState(0);
@@ -12,7 +13,7 @@ export const Balance = () => {
     const fetchBalance = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/v1/account/balance",
+          `${Server}/api/v1/account/balance`,
           {
             withCredentials: true, // This will send the cookie along with the request
           }
