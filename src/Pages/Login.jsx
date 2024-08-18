@@ -115,7 +115,7 @@ const Login = () => {
      
     if (response.status === 201) {
       toast.success("Signup Successful", { autoClose: 3000 });
-      navigate("/login");
+      navigate("/home");
     } else {
       throw new Error('Unexpected response status');
     }
