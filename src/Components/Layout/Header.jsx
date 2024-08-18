@@ -73,7 +73,7 @@ const logoutHandle = async () => {
       return;
     }
 
-    const res = await axios.post('http://localhost:8000/api/v1/users/logout', {}, {
+    const res = await axios.post(`${Server}/api/v1/users/logout`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

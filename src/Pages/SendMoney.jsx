@@ -2,6 +2,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useState } from 'react';
 import { BottomWarning } from '../Components/Transaction/BottomWarning';
+import { Server } from "../Constants/Config";
 
 
 export const SendMoney = () => {
@@ -35,8 +36,9 @@ export const SendMoney = () => {
             return ;
         }
         try {
-            const response =  await axios.post("http://localhost:8000/api/v1/account/transfer",
-             {
+            const response =  await axios.post(`${Server}/api/v1/account/transfer`,
+             {       
+
                 to:_id,
                 amount:Number(amount)
             },

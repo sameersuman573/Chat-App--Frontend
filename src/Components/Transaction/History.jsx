@@ -3,6 +3,7 @@ import { Button, IconButton } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Server } from "../../Constants/Config";
 
 
 export const History = () => {
@@ -24,7 +25,7 @@ export const History = () => {
     useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/api/v1/account/history/${Fromusername}`, config);
+                const res = await axios.get(`${Server}/api/v1/account/history/${Fromusername}`, config);
 
                 if (!res.data.data) {
                     console.log("Transaction history does not exist");
