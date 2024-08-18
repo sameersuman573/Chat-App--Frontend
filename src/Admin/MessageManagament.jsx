@@ -72,8 +72,8 @@ const columns = [
     width: 200,
     renderCell: (params) => (
       <Stack justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
-        <Avatar alt={params.row.sender.username} src={params.row.sender.avatar} />
-        <span>{params.row.sender.username}</span>
+        <Avatar alt={params.row.sender?.username} src={params.row.sender?.avatar} />
+        <span>{params.row.sender?.username}</span>
       </Stack>
     ),
   },
