@@ -128,8 +128,8 @@ import { Server } from "../Constants/Config";
               width: { xs: "100%", sm: "50%" },
               position: "relative",
               width: "100%",
-              maxWidth: "35rem",
-              height: "15rem",
+              maxWidth: "45rem",
+              height: "20rem",
             }}
           >
             <DoughtnutChart
