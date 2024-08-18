@@ -128,7 +128,7 @@ import { Server } from "../Constants/Config";
               width: { xs: "100%", sm: "50%" },
               position: "relative",
               width: "100%",
-              maxWidth: "45rem",
+              maxWidth: "35rem",
               height: "15rem",
             }}
           >
