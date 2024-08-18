@@ -106,11 +106,11 @@ const AdminLogin = () => {
                 onChange={handlePasswordChange}
               />
 
-              {passwordError && (
+              {/* {passwordError && (
                 <Typography color="error" variant="caption">
                   {passwordError}
                 </Typography>
-              )}
+              )} */}
 
               <Button
                 type="submit"
