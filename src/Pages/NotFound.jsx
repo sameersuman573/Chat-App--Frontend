@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 
 function NotFound() {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    // Reset the clicked state after the animation duration
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 200); // Match this duration with the animation duration
+  };
+
   return (
-    <div className="bg-gradient-to-b from-violet-600/10 via-transparent fade-in">
+    <div className="bg-gradient-to-b from-violet-600/10 via-transparent fade-in animation-fadeIn">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-8">
         <div className="flex justify-center">
           {/* Optional content */}
@@ -22,7 +32,8 @@ function NotFound() {
         <div className="text-center">
           <Link
             to="/home"
-            className="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:shadow-blue-700/50 py-3 px-6 button-transition"
+            className={`inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:shadow-blue-700/50 py-3 px-6 transition-transform duration-200 ease-in-out transform hover:scale-105 active:scale-95 ${isClicked ? 'animation-buttonClick' : ''}`}
+            onClick={handleClick}
           >
             Get started
             <svg
