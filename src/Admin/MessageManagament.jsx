@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../Components/Layout/AdminLayout";
 import Table from "../Components/Shared/Table";
-import { dashboarddata } from "../Constants/SampleData";
-import { fileFormat, transformImage } from "../lib/features";
+import { fileFormat } from "../lib/features";
 import AvatarCard from "../Components/Shared/AvatarCard";
 import { Stack, Avatar, Box } from "@mui/material";
 import RenderAttachment from "../Components/Shared/RenderAttachment";
@@ -26,30 +25,38 @@ const columns = [
     renderCell: (params) => {
       const { Attachments } = params.row;
 
-      return Attachments?.length > 0 ? 
-      Attachments.map((i) => {
+      if (Attachments?.length > 0) {
+        return (
+          <Stack spacing={1}>
+            {Attachments.map((i, index) => {
+              const url = i.url;
+              const file = fileFormat(url);
 
-        // Grab th url with the fileformat
-            const url = i.url;
-            const file = fileFormat(url);
-
-            return (
-              <Box>
-                <a
-                  href={url}
-                  target="_blank"
-                  download
-                  style={{
-                    color: "#D7BBF5",
-                  }}
-                >
-                  {RenderAttachment(file, url)}
-                </a>
-              </Box>
-            );
-          })
-        : "No attachments "
-return <AvatarCard alt={params.row.name} src={params.row.avatar} />;
+              return (
+                <Box key={index}>
+                  <a
+                    href={url}
+                    target="_blank"
+                    download
+                    style={{
+                      color: "#D7BBF5",
+                    }}
+                  >
+                    {RenderAttachment(file, url)}
+                  </a>
+                </Box>
+              );
+            })}
+          </Stack>
+        );
+      } else {
+        return (
+          <Stack spacing={1} alignItems="center">
+            <Box>No attachments</Box>
+            <AvatarCard alt={params.row.name} src={params.row.avatar} />
+          </Stack>
+        );
+      }
     },
   },
   {
@@ -84,9 +91,7 @@ return <AvatarCard alt={params.row.name} src={params.row.avatar} />;
   // },
 ];
 
-const MessageManagament = () => {
-
-
+const MessageManagement = () => {
   const {
     loading,
     data: stats,
@@ -98,8 +103,6 @@ const MessageManagament = () => {
 
   const { data } = stats || {};
 
-  console.log(data);
-
   useErrors([
     {
       isError: error,
@@ -107,35 +110,33 @@ const MessageManagament = () => {
     },
   ]);
 
-  const [rows, setrows] = useState([]);
+  const [rows, setRows] = useState([]);
 
- 
   useEffect(() => {
-  if(data){
-    setrows(
-      data?.map((mess) => ({
-        ...mess,
-        id: mess._id, // Set the unique `id` property required by DataGrid
-      }))
-    )
-  }
-  }, [data])
-  
+    if (data) {
+      setRows(
+        data?.map((mess) => ({
+          ...mess,
+          id: mess._id, // Set the unique `id` property required by DataGrid
+        }))
+      );
+    }
+  }, [data]);
 
   return (
     <AdminLayout>
-     {loading ? <LoaderIcon/> : (
-      <div>
-      <Table
-        heading={"All Messages"}
-        columns={columns}
-        rows={rows}
-        rowHeight={200}
-      />
-      </div>
-     )}
+      {loading ? <LoaderIcon /> : (
+        <div>
+          <Table
+            heading={"All Messages"}
+            columns={columns}
+            rows={rows}
+            rowHeight={200}
+          />
+        </div>
+      )}
     </AdminLayout>
   );
 };
 
-export default MessageManagament;
+export default MessageManagement;
